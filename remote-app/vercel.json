@@ -1,0 +1,13 @@
+{
+  "headers": [
+    {
+      "source": "/assets/remoteEntry.js",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://host-app.vercel.app"
+        }
+      ]
+    }
+  ]
+}

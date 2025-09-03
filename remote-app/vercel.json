@@ -5,7 +5,7 @@
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://micro-frontned-host.vercel.app"
+          "value": "https://micro-frontned-host.vercdel.app"
         }
       ]
     }

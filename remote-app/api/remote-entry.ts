@@ -7,14 +7,18 @@ export default function handler(req, res) {
   ];
 
   const origin = req.headers.origin || "";
-  if (!allowedOrigins.includes(origin)) {
+
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Vary", "Origin");
+  } else {
     return res.status(403).send("Forbidden");
   }
 
-  // adjust the path depending on where Vercel puts your dist
+  res.setHeader("Content-Type", "application/javascript");
+
   const filePath = path.join(process.cwd(), "dist/assets/remoteEntry.js");
   const file = fs.readFileSync(filePath, "utf-8");
 
-  res.setHeader("Content-Type", "application/javascript");
   res.send(file);
 }

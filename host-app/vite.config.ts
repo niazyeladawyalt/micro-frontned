@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
       federation({
         name: "host_app",
         remotes: {
-          remote_app: `${env.VITE_REMOTE_APP_URL}/api/remote-entry`,
+          remote_app: `${env.VITE_REMOTE_APP_URL}/assets/remoteEntry.js`,
         },
         shared: ["react", "react-dom"],
       }),

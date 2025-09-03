@@ -1,5 +1,3 @@
-import remoteEntry from "../dist/assets/remoteEntry.js?raw";
-
 export default function handler(req, res) {
   const allowedOrigins = ["https://micro-frontned-host.vercel.app"];
   const origin = req.headers.origin || "";
@@ -21,8 +19,8 @@ export default function handler(req, res) {
     return res.status(403).send("Forbidden");
   }
 
+  // Redirect to static file in /public
   res.setHeader("Access-Control-Allow-Origin", origin);
   res.setHeader("Vary", "Origin");
-  res.setHeader("Content-Type", "application/javascript");
-  res.send(remoteEntry);
+  res.redirect("/remoteEntry.js");
 }

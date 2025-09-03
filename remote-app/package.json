@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-  "postbuild": "cpx dist/assets/remoteEntry.js public/",
+    "postbuild": "cpx dist/assets/remoteEntry.js public/",
     "lint": "eslint .",
     "preview": "vite preview --port 5001 --strictPort",
     "serve": "npm run build && npm run preview"
@@ -23,6 +23,7 @@
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react-swc": "^4.0.0",
+    "cpx": "^1.5.0",
     "eslint": "^9.33.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",

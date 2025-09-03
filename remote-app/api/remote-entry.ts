@@ -1,9 +1,12 @@
 // api/remote-entry.ts
+import path from "path";
+import fs from "fs";
+
 export default function handler(req, res) {
   const allowedOrigins = ["https://micro-frontned-host.vercel.app"];
   const origin = req.headers.origin || "";
 
-  // Preflight
+  // Handle preflight
   if (req.method === "OPTIONS") {
     if (allowedOrigins.includes(origin)) {
       res.setHeader("Access-Control-Allow-Origin", origin);
@@ -21,9 +24,18 @@ export default function handler(req, res) {
     return res.status(403).send("Forbidden");
   }
 
-  // Serve static remoteEntry.js
+  // Absolute path to your built remoteEntry.js
+  const filePath = path.join(process.cwd(), "public", "remoteEntry.js");
+
+  if (!fs.existsSync(filePath)) {
+    console.error("remoteEntry.js not found at", filePath);
+    return res.status(500).send("remoteEntry.js not found");
+  }
+
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+
   res.setHeader("Access-Control-Allow-Origin", origin);
   res.setHeader("Vary", "Origin");
   res.setHeader("Content-Type", "application/javascript");
-  res.sendFile(process.cwd() + "/public/remoteEntry.js");
+  res.status(200).send(fileContent);
 }

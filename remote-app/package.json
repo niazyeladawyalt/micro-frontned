@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "postbuild": "cp dist/assets/remoteEntry.js public/remoteEntry.js",
+    "postbuild": "ls -l public && cpx dist/assets/remoteEntry.js public/ && ls -l public",
     "lint": "eslint .",
     "preview": "vite preview --port 5001 --strictPort",
     "serve": "npm run build && npm run preview"
